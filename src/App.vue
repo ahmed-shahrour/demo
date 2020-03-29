@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <TheNavBar style="height: 8%;" />
-    <HelloWorld style="height: 92%;" class="w-100" />
+    <Main style="height: 92%;" class="w-100" />
   </div>
 </template>
 
 <script>
 import TheNavBar from './components/TheNavBar';
-import HelloWorld from './components/HelloWorld.vue';
+import Main from './views/Main.vue';
 
 export default {
   name: 'App',
   components: {
     TheNavBar,
-    HelloWorld
+    Main
   }
 };
 </script>

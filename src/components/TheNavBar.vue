@@ -15,7 +15,7 @@
         class="text-nowrap mt-5"
         :active="$route.name == 'Messages'"
         @click="closeNav"
-        >Messages</b-link
+        >Create Objects</b-link
       >
       <b-link
         class="text-nowrap"
