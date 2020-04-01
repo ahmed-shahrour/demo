@@ -41,6 +41,12 @@ const routes = [
         ]
       }
     ]
+  },
+  {
+    path: '*',
+    redirect: {
+      name: 'App'
+    }
   }
 ];
 

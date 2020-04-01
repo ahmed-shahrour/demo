@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import round from 'lodash/round';
-// import sum from 'lodash/sum';
 
 import router from '../router';
 
@@ -46,9 +45,9 @@ export default new Vuex.Store({
     updateFormatToggle(state, payload) {
       state.nav.formatToggle = payload;
 
-      if (payload === 'map') {
+      if (payload === 'map' && state.nav.isOpt) {
         router.push({ name: 'Map' });
-      } else if (payload === 'table') {
+      } else if (payload === 'table' && state.nav.isOpt) {
         router.push({ name: 'Table' });
       }
     },

@@ -65,6 +65,13 @@
 import conditions from '../DummyData/conditionTranslate';
 
 export default {
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (!vm.$store.getters.isOpt || vm.$store.getters.isMap) {
+        vm.$router.replace({ name: 'Map' });
+      }
+    });
+  },
   data() {
     return {
       transProps: {
