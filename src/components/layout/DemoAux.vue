@@ -6,7 +6,10 @@
 
 <script>
 export default {
-  name: 'DemoAux'
+  name: 'DemoAux',
+  created() {
+    this.$store.dispatch('incrementInv');
+  }
 };
 </script>
 

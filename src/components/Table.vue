@@ -10,8 +10,8 @@
         no-border-collapse
         style="display: inline-block"
         responsive
-        :sort-by="'condition'"
-        :sort-desc="false"
+        :sort-by="'health'"
+        :sort-desc="true"
         :tbody-transition-props="transProps"
         primary-key="id"
       >
