@@ -15,19 +15,19 @@
         class="text-nowrap mt-5"
         :active="$route.name == 'Messages'"
         @click="closeNav"
-        >Create Objects</b-link
+        >Demo</b-link
       >
       <b-link
         class="text-nowrap"
         :active="$route.name == 'Market'"
         @click="closeNav"
-        >Market</b-link
+        >Info</b-link
       >
       <b-link
         class="text-nowrap"
         @click="closeNav"
         :active="$route.name == 'Test'"
-        >Account</b-link
+        >Contact</b-link
       >
     </div>
 
@@ -38,10 +38,21 @@
       class="px-1 py-0"
       ><b-icon-list font-scale="2.5" class="p-0 m-0"></b-icon-list
     ></b-button>
-
-    <b-navbar-brand href="#" class="ml-4" style="color: #fff;"
-      >Covid Optimize</b-navbar-brand
+    <div
+      class="border rounded shadow p-2 mx-auto"
+      style="border-width: 2px !important; text-align: center;"
     >
+      <b-form-checkbox switch size="md" v-model="isOptVal" style="color: white;"
+        >Optimize</b-form-checkbox
+      >
+      <b-form-radio-group
+        v-show="isOptVal"
+        v-model="toggleVal"
+        :options="radio.options"
+        style="color: white;"
+      >
+      </b-form-radio-group>
+    </div>
   </b-navbar>
 </template>
 
@@ -51,7 +62,13 @@ export default {
   data() {
     return {
       navWidth: 0,
-      isNavOpen: false
+      isNavOpen: false,
+      radio: {
+        options: [
+          { text: 'Map', value: 'map' },
+          { text: 'Table', value: 'table' }
+        ]
+      }
     };
   },
   methods: {
@@ -62,6 +79,24 @@ export default {
     closeNav() {
       this.isNavOpen = false;
       this.navWidth = 0;
+    }
+  },
+  computed: {
+    isOptVal: {
+      get() {
+        return this.$store.getters.isOpt;
+      },
+      set(val) {
+        this.$store.commit('updateIsOpt', val);
+      }
+    },
+    toggleVal: {
+      get() {
+        return this.$store.getters.formatToggle;
+      },
+      set(val) {
+        return this.$store.commit('updateFormatToggle', val);
+      }
     }
   }
 };
