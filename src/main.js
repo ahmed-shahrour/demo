@@ -1,11 +1,26 @@
 import Vue from 'vue';
 
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
-import { Icon } from 'leaflet';
-
 import App from './App.vue';
 import router from './router';
 import store from './store';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(faFacebookSquare, faEnvelope);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
+
+import { Icon } from 'leaflet';
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -14,12 +29,7 @@ Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'leaflet/dist/leaflet.css';
-
-Vue.use(BootstrapVue);
-Vue.use(BootstrapVueIcons);
 
 Vue.config.productionTip = false;
 

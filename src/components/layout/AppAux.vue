@@ -17,12 +17,10 @@ export default {
 
 <style>
 .slide-fade-enter-active {
-  transition: all 0.4s ease;
-  /* transition-delay: 2s; */
+  transition: all 0.8s ease;
 }
 .slide-fade-leave-active {
-  transition: all 0.7s ease;
-  /* transition-delay: 2s; */
+  transition: all 0.4s ease;
 }
 .slide-fade-enter,
 .slide-fade-leave-to {
