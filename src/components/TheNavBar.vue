@@ -69,9 +69,6 @@
 <script>
 export default {
   name: 'TheNavBar',
-  created() {
-    console.log(this.$route);
-  },
   data() {
     return {
       navWidth: 0,
