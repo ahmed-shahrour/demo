@@ -35,7 +35,42 @@
             ></b-icon>
           </b-iconstack>
         </l-icon>
-        <l-popup>{{ hospital.name }}</l-popup>
+        <l-popup style="width: 200px;">
+          <p class="text-center" style="font-size: 14px;">
+            <strong>{{ hospital.name }}</strong>
+          </p>
+
+          <div v-show="$store.getters.isOpt" class="pb-2">
+            <hr />
+            <b-row class="mt-1">
+              <b-col cols="7" class="my-0">
+                <p class="label my-0">Condition:</p></b-col
+              >
+              <b-col class="my-0"
+                ><p class="my-0">
+                  {{ convConToStr(hospital.condition) }}
+                </p></b-col
+              >
+            </b-row>
+
+            <b-row class="mt-1">
+              <b-col cols="7" class="py-0 my-0">
+                <p class="label my-0">Occupancy Rate:</p></b-col
+              >
+              <b-col class="py-0 my-0"
+                ><p class="my-0">{{ hospital.health }}%</p></b-col
+              >
+            </b-row>
+            <b-row class="mt-1">
+              <b-col cols="7" class="py-0 my-0">
+                <p class="label my-0">ER Wait Time:</p></b-col
+              >
+              <b-col class="py-0 my-0"
+                ><p class="my-0">{{ hospital.er_time }} hr</p></b-col
+              >
+            </b-row>
+          </div>
+        </l-popup>
       </l-marker>
 
       <l-marker :lat-lng="[25.14468, 55.305078]">
@@ -80,6 +115,18 @@ export default {
       zoom: 11.5,
       center: [25.14468, 55.305078]
     };
+  },
+  methods: {
+    convConToStr(condition) {
+      switch (condition) {
+        case conditions.CRITICAL:
+          return 'Critical';
+        case conditions.MILD:
+          return 'Mild';
+        case conditions.STABLE:
+          return 'Stable';
+      }
+    }
   }
 };
 </script>
