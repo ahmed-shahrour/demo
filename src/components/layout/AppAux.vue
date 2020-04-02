@@ -1,7 +1,9 @@
 <template>
   <div class="h-100">
     <TheNavBar style="height: 8vh;"></TheNavBar>
-    <router-view style="height: 92vh"></router-view>
+    <transition name="slide-fade" mode="out-in" appear>
+      <router-view style="height: 92vh" mode="out-in"> </router-view>
+    </transition>
   </div>
 </template>
 
@@ -13,4 +15,22 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.slide-fade-enter-active {
+  transition: all 0.4s ease;
+  /* transition-delay: 2s; */
+}
+.slide-fade-leave-active {
+  transition: all 0.7s ease;
+  /* transition-delay: 2s; */
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  opacity: 0;
+}
+
+.slide-fade-enter-to,
+.slide-fade-leave {
+  opacity: 1;
+}
+</style>

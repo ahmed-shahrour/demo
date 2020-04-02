@@ -12,21 +12,24 @@
       ></b-icon-x-circle>
 
       <b-link
+        :to="{ name: 'Map' }"
         class="text-nowrap mt-5"
-        :active="$route.name == 'Messages'"
+        :active="$route.name === 'Map' || $route.name === 'Table'"
         @click="closeNav"
         >Demo</b-link
       >
       <b-link
+        :to="{ name: 'About' }"
         class="text-nowrap"
-        :active="$route.name == 'Market'"
-        @click="closeNav"
-        >Info</b-link
+        :active="$route.name === 'About'"
+        @click="nonDemoClick"
+        >About</b-link
       >
       <b-link
+        :to="{ name: 'Contact' }"
         class="text-nowrap"
-        @click="closeNav"
-        :active="$route.name == 'Test'"
+        @click="nonDemoClick"
+        :active="$route.name == 'Contact'"
         >Contact</b-link
       >
     </div>
@@ -38,27 +41,37 @@
       class="px-1 py-0"
       ><b-icon-list font-scale="2.5" class="p-0 m-0"></b-icon-list
     ></b-button>
-    <div
-      class="border rounded shadow p-2 mx-auto"
-      style="border-width: 2px !important; text-align: center;"
-    >
-      <b-form-checkbox switch size="md" v-model="isOptVal" style="color: white;"
-        >Optimize</b-form-checkbox
+    <transition name="slide-fade">
+      <div
+        class="border rounded shadow p-2 mx-auto"
+        style="border-width: 2px !important; text-align: center;"
+        v-show="$route.name === 'Map' || $route.name === 'Table'"
       >
-      <b-form-radio-group
-        v-show="isOptVal"
-        v-model="toggleVal"
-        :options="radio.options"
-        style="color: white;"
-      >
-      </b-form-radio-group>
-    </div>
+        <b-form-checkbox
+          switch
+          size="md"
+          v-model="isOptVal"
+          style="color: white;"
+          >Optimize</b-form-checkbox
+        >
+        <b-form-radio-group
+          v-show="isOptVal"
+          v-model="toggleVal"
+          :options="radio.options"
+          style="color: white;"
+        >
+        </b-form-radio-group>
+      </div>
+    </transition>
   </b-navbar>
 </template>
 
 <script>
 export default {
   name: 'TheNavBar',
+  created() {
+    console.log(this.$route);
+  },
   data() {
     return {
       navWidth: 0,
@@ -72,6 +85,10 @@ export default {
     };
   },
   methods: {
+    nonDemoClick() {
+      this.$store.dispatch('stopIncrement');
+      this.closeNav();
+    },
     openNav() {
       this.isNavOpen = true;
       this.navWidth = 300;

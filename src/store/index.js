@@ -16,7 +16,8 @@ export default new Vuex.Store({
       formatToggle: 'map'
     },
     data: {
-      hospitals: final.default
+      hospitals: final.default,
+      incrementInt: null
     }
   },
   getters: {
@@ -51,7 +52,11 @@ export default new Vuex.Store({
         router.push({ name: 'Table' });
       }
     },
-    incrementInv(state) {
+    switchOff(state) {
+      state.nav.isOpt = false;
+      state.nav.formatToggle = 'map';
+    },
+    mutateHospitals(state) {
       const MAX_ER_WAIT = 4;
 
       for (let hospital of state.data.hospitals) {
@@ -87,11 +92,14 @@ export default new Vuex.Store({
   },
   actions: {
     incrementInv(context) {
-      setInterval(() => {
-        if (context.state.nav.isOpt) {
-          context.commit('incrementInv');
-        }
+      context.state.data.incrementInt = setInterval(() => {
+        if (context.state.nav.isOpt) context.commit('mutateHospitals');
       }, 1500);
+    },
+    stopIncrement(context) {
+      context.commit('switchOff');
+      clearInterval(context.state.data.incrementInt);
+      context.state.data.incrementInt = null;
     }
   }
 });

@@ -116,6 +116,9 @@ export default {
       center: [25.14468, 55.305078]
     };
   },
+  created() {
+    this.$store.dispatch('incrementInv');
+  },
   methods: {
     convConToStr(condition) {
       switch (condition) {
