@@ -24,7 +24,7 @@ const routes = [
         name: 'AppAux',
         component: AppAux,
         redirect: {
-          name: 'TheMap'
+          name: 'Map'
         },
         children: [
           {

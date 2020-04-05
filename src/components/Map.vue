@@ -7,7 +7,7 @@
         v-for="hospital in $store.getters.hospitals"
         :lat-lng="[
           hospital.geometry.location.lat,
-          hospital.geometry.location.lng
+          hospital.geometry.location.lng,
         ]"
         :key="hospital.id"
       >
@@ -73,7 +73,7 @@
         </l-popup>
       </l-marker>
 
-      <l-marker :lat-lng="[25.14468, 55.305078]">
+      <l-marker :lat-lng="center">
         <l-icon>
           <b-icon
             icon="person-fill"
@@ -83,7 +83,9 @@
           >
           </b-icon>
         </l-icon>
-        <l-popup>I called 999!</l-popup>
+        <l-popup
+          >I called 999! Which hospital will I be transported to?</l-popup
+        >
       </l-marker>
     </l-map>
 
@@ -95,6 +97,7 @@
 import { LMap, LTileLayer, LMarker, LPopup, LIcon } from 'vue2-leaflet';
 import TopCards from './TopCards';
 import conditions from '../DummyData/conditionTranslate';
+import pointInPoly from '../helpers/pointInPolygon';
 
 export default {
   name: 'HelloWorld',
@@ -104,7 +107,7 @@ export default {
     LMarker,
     LPopup,
     LIcon,
-    TopCards
+    TopCards,
   },
   data() {
     return {
@@ -112,14 +115,40 @@ export default {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      zoom: 11.5,
-      center: [25.14468, 55.305078]
+      zoom: 11,
+      center: [25.14468, 55.305078],
+      noLocation: true,
     };
   },
   created() {
     this.$store.dispatch('incrementInv');
+    this.getLocation();
   },
   methods: {
+    async getLocation() {
+      try {
+        const coordinates = await this.$getLocation({
+          enableHighAccuracy: true,
+        });
+
+        const { lat, lng } = coordinates;
+
+        const dubaiPoly = [
+          [25.0669411, 54.9934387],
+          [25.3781519, 55.2735901],
+          [25.2478012, 55.5091095],
+          [24.90699, 55.2296448],
+          [25.0669411, 54.994812],
+        ];
+
+        if (pointInPoly([lat, lng], dubaiPoly)) {
+          this.center = coordinates;
+        }
+        this.noLocation = false;
+      } catch (error) {
+        this.noLocation = true;
+      }
+    },
     convConToStr(condition) {
       switch (condition) {
         case conditions.CRITICAL:
@@ -129,8 +158,8 @@ export default {
         case conditions.STABLE:
           return 'Stable';
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

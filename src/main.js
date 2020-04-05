@@ -31,6 +31,9 @@ Icon.Default.mergeOptions({
 
 import 'leaflet/dist/leaflet.css';
 
+import VueGeolocation from 'vue-browser-geolocation';
+Vue.use(VueGeolocation);
+
 Vue.config.productionTip = false;
 
 new Vue({

@@ -13,12 +13,12 @@ export default new Vuex.Store({
   state: {
     nav: {
       isOpt: false,
-      formatToggle: 'map'
+      formatToggle: 'map',
     },
     data: {
       hospitals: final.default,
-      incrementInt: null
-    }
+      incrementInt: null,
+    },
   },
   getters: {
     isOpt(state) {
@@ -32,7 +32,7 @@ export default new Vuex.Store({
     },
     hospitals(state) {
       return state.data.hospitals;
-    }
+    },
   },
   mutations: {
     updateIsOpt(state, payload) {
@@ -88,18 +88,18 @@ export default new Vuex.Store({
             ? conditions.MILD
             : conditions.STABLE;
       }
-    }
+    },
   },
   actions: {
     incrementInv(context) {
       context.state.data.incrementInt = setInterval(() => {
         if (context.state.nav.isOpt) context.commit('mutateHospitals');
-      }, 1500);
+      }, 2000);
     },
     stopIncrement(context) {
       context.commit('switchOff');
       clearInterval(context.state.data.incrementInt);
       context.state.data.incrementInt = null;
-    }
-  }
+    },
+  },
 });
