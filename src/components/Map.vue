@@ -90,12 +90,14 @@
     </l-map>
 
     <TopCards />
+    <TheMapModal />
   </div>
 </template>
 
 <script>
 import { LMap, LTileLayer, LMarker, LPopup, LIcon } from 'vue2-leaflet';
 import TopCards from './TopCards';
+import TheMapModal from './TheMapModal';
 import conditions from '../DummyData/conditionTranslate';
 import pointInPoly from '../helpers/pointInPolygon';
 
@@ -108,6 +110,7 @@ export default {
     LPopup,
     LIcon,
     TopCards,
+    TheMapModal,
   },
   data() {
     return {
@@ -117,36 +120,36 @@ export default {
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 11,
       center: [25.14468, 55.305078],
-      noLocation: true,
     };
   },
   created() {
-    this.$store.dispatch('incrementInv');
     this.getLocation();
+    this.$store.dispatch('incrementInv');
+  },
+  mounted() {
+    if (this.$store.getters.showMapModal) {
+      this.$bvModal.show('heads-up');
+      this.$store.commit('updateShowMapModal', false);
+    }
   },
   methods: {
     async getLocation() {
-      try {
-        const coordinates = await this.$getLocation({
-          enableHighAccuracy: true,
-        });
+      const coordinates = await this.$getLocation({
+        enableHighAccuracy: true,
+      });
 
-        const { lat, lng } = coordinates;
+      const { lat, lng } = coordinates;
 
-        const dubaiPoly = [
-          [25.0669411, 54.9934387],
-          [25.3781519, 55.2735901],
-          [25.2478012, 55.5091095],
-          [24.90699, 55.2296448],
-          [25.0669411, 54.994812],
-        ];
+      const dubaiPoly = [
+        [25.0669411, 54.9934387],
+        [25.3781519, 55.2735901],
+        [25.2478012, 55.5091095],
+        [24.90699, 55.2296448],
+        [25.0669411, 54.994812],
+      ];
 
-        if (pointInPoly([lat, lng], dubaiPoly)) {
-          this.center = coordinates;
-        }
-        this.noLocation = false;
-      } catch (error) {
-        this.noLocation = true;
+      if (pointInPoly([lat, lng], dubaiPoly)) {
+        this.center = coordinates;
       }
     },
     convConToStr(condition) {

@@ -1,14 +1,14 @@
 <template>
-  <div class="container pt-5 w-50">
-    <b-row>
-      <b-col>
+  <div class="container pt-5">
+    <b-row align-h="center">
+      <b-col cols="12" sm="11" md="9">
         <h1 class="title text-center">Contact</h1>
         <hr />
       </b-col>
     </b-row>
-    <b-row class="mt-3 pb-5">
-      <b-col>
-        <h5 class="text-justify" style="line-height: 1.5em">
+    <b-row class="mt-3 pb-5" align-h="center">
+      <b-col cols="12" sm="11" md="9">
+        <h5 class="text-justify" style="line-height: 1.5em;">
           If you're interested in having a discussion on starting a motion, or
           you're just simply curious and want to bounce your ideas off the
           problem/solution presented, then by all means bring it to light! (Do
@@ -18,38 +18,38 @@
         </h5>
       </b-col>
     </b-row>
-    <b-row align-h="center" class="mt-5">
+    <b-row align-h="center" class="mt-4">
       <b-button
         :href="'#'"
         class="p-0 mr-4"
-        style="background-color: transparent; border-width: 0px"
+        style="background-color: transparent; border-width: 0px;"
       >
         <font-awesome-icon
           :icon="['fab', 'facebook-square']"
           size="5x"
-          style="color: #4267B2"
+          style="color: #4267b2;"
         />
       </b-button>
       <b-button
         :href="'mailto:ahmadshahrour951@gmail.com'"
         class="p-0 mx-4"
-        style="background-color: transparent; border-width: 0px"
+        style="background-color: transparent; border-width: 0px;"
       >
         <font-awesome-icon
           :icon="['far', 'envelope']"
           size="5x"
-          style="color: #D44638"
+          style="color: #d44638;"
         />
       </b-button>
       <b-button
-        href="https://github.com/ahmadshahrour951/syringe"
+        href="https://github.com/ahmadshahrour951/covidoptimize"
         class="p-0 ml-4"
-        style="background-color: transparent; border-width: 0px"
+        style="background-color: transparent; border-width: 0px;"
       >
         <font-awesome-icon
           :icon="['fab', 'github']"
           size="5x"
-          style="color: black"
+          style="color: black;"
         />
       </b-button>
     </b-row>

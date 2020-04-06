@@ -19,6 +19,7 @@ export default new Vuex.Store({
       hospitals: final.default,
       incrementInt: null,
     },
+    showMapModal: true,
   },
   getters: {
     isOpt(state) {
@@ -33,8 +34,14 @@ export default new Vuex.Store({
     hospitals(state) {
       return state.data.hospitals;
     },
+    showMapModal(state) {
+      return state.showMapModal;
+    },
   },
   mutations: {
+    updateShowMapModal(state, payload) {
+      state.showMapModal = payload;
+    },
     updateIsOpt(state, payload) {
       state.nav.isOpt = payload;
 

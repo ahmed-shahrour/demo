@@ -1,5 +1,5 @@
 <template>
-  <b-navbar class="px-4" style="background-color: #7dc2af;">
+  <b-navbar class="px-4" style="background-color: #2b7a78;">
     <div
       class="sidenav rounded-right"
       :style="{ width: navWidth + 'px' }"
@@ -55,7 +55,7 @@
           >Optimize</b-form-checkbox
         >
         <b-form-radio-group
-          v-show="isOptVal"
+          v-show="isOptVal && windowWidth > 500"
           v-model="toggleVal"
           :options="radio.options"
           style="color: white;"
@@ -67,7 +67,10 @@
 </template>
 
 <script>
+import { vueWindowSizeMixin } from 'vue-window-size';
+
 export default {
+  mixins: [vueWindowSizeMixin],
   name: 'TheNavBar',
   data() {
     return {
@@ -76,9 +79,9 @@ export default {
       radio: {
         options: [
           { text: 'Map', value: 'map' },
-          { text: 'Table', value: 'table' }
-        ]
-      }
+          { text: 'Table', value: 'table' },
+        ],
+      },
     };
   },
   methods: {
@@ -88,12 +91,16 @@ export default {
     },
     openNav() {
       this.isNavOpen = true;
-      this.navWidth = 300;
+      if (this.windowWidth > 500) {
+        this.navWidth = 300;
+      } else {
+        this.navWidth = 200;
+      }
     },
     closeNav() {
       this.isNavOpen = false;
       this.navWidth = 0;
-    }
+    },
   },
   computed: {
     isOptVal: {
@@ -102,7 +109,7 @@ export default {
       },
       set(val) {
         this.$store.commit('updateIsOpt', val);
-      }
+      },
     },
     toggleVal: {
       get() {
@@ -110,9 +117,9 @@ export default {
       },
       set(val) {
         return this.$store.commit('updateFormatToggle', val);
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

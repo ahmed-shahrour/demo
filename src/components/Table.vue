@@ -8,10 +8,10 @@
         :fields="fields"
         sticky-header="75vh"
         no-border-collapse
-        style="display: inline-block"
+        style="display: inline-block;"
         responsive
         :sort-by="'health'"
-        :sort-desc="true"
+        :sort-desc="false"
         :tbody-transition-props="transProps"
         primary-key="id"
       >
@@ -39,7 +39,7 @@
             <b-th
               colspan="2"
               class="border"
-              style="position: sticky !important;  top: 0px !important;"
+              style="position: sticky !important; top: 0px !important;"
               >Beds</b-th
             >
             <b-th
@@ -66,7 +66,7 @@ import conditions from '../DummyData/conditionTranslate';
 
 export default {
   beforeRouteEnter(to, from, next) {
-    next(vm => {
+    next((vm) => {
       if (!vm.$store.getters.isOpt || vm.$store.getters.isMap) {
         vm.$router.replace({ name: 'Map' });
       }
@@ -75,85 +75,85 @@ export default {
   data() {
     return {
       transProps: {
-        name: 'flip-list'
+        name: 'flip-list',
       },
       fields: [
         {
           key: 'name',
           label: 'Hospital',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'condition',
           label: 'Condition',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'health',
           label: 'Resource Occupancy (%)',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'er_time',
           label: 'ER Wait Time (hr)',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'doctors',
           label: 'Doctors',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'nurses',
           label: 'Nurses',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'icus_occupied',
           label: 'Occupied',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'icus_total',
           label: 'Total',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'beds_occupied',
           label: 'Occupied',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'beds_total',
           label: 'Total',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'ventilators_occupied',
           label: 'Occupied',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'ventilators_total',
           label: 'Total',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'respirators_occupied',
           label: 'Occupied',
-          sortable: true
+          sortable: true,
         },
         {
           key: 'respirators_total',
           label: 'Total',
-          sortable: true
-        }
-      ]
+          sortable: true,
+        },
+      ],
     };
   },
   computed: {
     tableItems() {
-      return this.$store.getters.hospitals.map(hospital => {
+      return this.$store.getters.hospitals.map((hospital) => {
         return {
           id: hospital.id,
           name: hospital.name,
@@ -180,11 +180,11 @@ export default {
               ? 'danger'
               : hospital.condition === conditions.MILD
               ? 'warning'
-              : 'success'
+              : 'success',
         };
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

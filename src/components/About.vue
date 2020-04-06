@@ -1,14 +1,14 @@
 <template>
-  <div id="container" class="container py-5 w-50">
-    <b-row>
-      <b-col>
+  <div id="container" class="container py-5">
+    <b-row align-h="center">
+      <b-col cols="12" sm="11" md="9">
         <h1 class="title text-center">About</h1>
         <hr
       /></b-col>
     </b-row>
-    <b-row class="my-3">
-      <b-col>
-        <h5 class="text-justify" style="line-height: 1.5em;">
+    <b-row class="my-3" align-h="center">
+      <b-col cols="12" sm="11" md="9">
+        <h5 class="text-justify w-100" style="line-height: 1.5em;">
           Lovely you're curious! You're probably wondering what the demo was all
           about? Well, it's meant to show you the power of leveraging
           <strong>LIVE</strong>
