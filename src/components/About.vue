@@ -27,11 +27,12 @@
           endless flow of infected patients at a critical state. The EMD needs
           to make a swift decision to take the emergency caller to the right
           hospital. <br /><br />
-          Let's play a scenario, Alice is infected with COVID19 and is having a
-          hard time breathing. Subsequently, she called 911 for medical
-          assistance. Which hospital should the EMD dispatch Alice to? The
-          closest one? Let's say Alice does end up being transported by an
-          ambulance to Hospital A (the closest hospital). Alice will undergo a
+          <i>Scenario:</i>
+          Alice is infected with COVID19 and is having a hard time breathing, so
+          she called for medical assistance. Which hospital should the EMD
+          dispatch Alice to? The nearest? Let's say Alice does end up being
+          transported by an ambulance to Hospital A (the nearest hospital).
+          Alice will undergo a
           <a href="https://en.wikipedia.org/wiki/Triage">triage</a> by a
           paramedic at Hospital A, BUT, whatever the outcome, a ventilator is
           required to treat Alice, and they're all occupied. She'll either have
@@ -39,10 +40,9 @@
           another hospital that POSSIBLY has a vacant ventilator.
 
           <br /><br />
-          Now let's pause for a moment and zoom in, Alice's probability of
-          having pneumonia just increased because she had to wait for resources
-          to vacate. A few miles away, another hospital, Hospital B, had that
-          resource vacant. This is an optimization problem.
+          Alice's probability of having pneumonia just increased because she had
+          to wait for resources to vacate. A few miles away, another hospital,
+          Hospital B, had that resource vacant. This is an optimization problem.
         </h5>
         <br /><br />
         <h3>Solution</h3>
@@ -57,19 +57,33 @@
           <br />
           General information on resource inventory in hospitals (beds, ICUs,
           ventilators, respirators, PPEs, etc.) and medical personnel (doctors,
-          nurses, etc.). Ideally, the rate should be as live as possible for the
-          EMD to make a better judgment.
+          nurses, etc.). Ideally, the rate should be as frequent as possible for
+          the EMD to make a better judgment.
           <br /><br />
           <i>How will the EMD get that information?</i>
           <br />
-          All hospitals have a database where they keep track of their
-          resources. These databases can be accessed (the difficulty resides on
-          the hospital's technical infrastructure). If the database can't be
-          accessed by a third party easily, then maybe a 6-hour update window
-          from the hospital staff can be made on a web interface? For all of
-          this to happen, the government might have to be impose hospitals to
-          provide that data. The IT team efforts from both the government and
-          the hospitals could be involved and cooperate to make this happen.
+          <ol>
+            <li>
+              Hospital Databases:
+              <br />
+              All hospitals have a database where they keep track of their
+              resources. These databases can be accessed (the difficulty resides
+              on the hospital's technical infrastructure).
+            </li>
+            <br />
+            <li>
+              Staff Input:
+              <br />
+              If the database can't be accessed by a third party easily, then
+              maybe a 6-hour update window from the hospital staff can be made
+              on a web interface? For all of this to happen, the government
+              might have to be impose hospitals to provide that data.
+            </li>
+          </ol>
+          <br />
+          Whatever the approach, there needs to be a well coordinated team
+          effort from both the government and the hospitals to cooperate and
+          make this happen.
         </h5>
 
         <br /><br />
@@ -102,15 +116,18 @@
               <br />
               <br />
               We're also building a user input mechanism (like an IOS/Andriod
-              App). This is where the user is able to provide data such as ER
-              waiting time and their triage status (being rejected/accepted) at
-              a certain hospital. There will be a separate EMD-like-dashboard
-              for the regular layperson like you or me.
+              App). It will be independent of a hospital's input, although it
+              will be less reliable than using hospitals' direct database. This
+              is where the user is able to provide data such as ER waiting time
+              and their triage status (being rejected/accepted) at a certain
+              hospital. There will be a separate EMD-like-dashboard for the
+              regular layperson like you or me.
             </li>
           </ol>
           <br />
-          We know there will be blockades and a lot of work to be done, and all
-          efforts are encouraged.
+          There's a lot of work to be done, and all efforts are encocuraged. No
+          matter the constraints, we will continue to work on the project until
+          the very end.
         </h5>
         <br /><br />
         <h3>Further Questions:</h3>
