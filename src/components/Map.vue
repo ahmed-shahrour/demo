@@ -91,6 +91,7 @@
 
     <TopCards />
     <TheMapModal />
+    <TheAboutModal />
   </div>
 </template>
 
@@ -98,6 +99,7 @@
 import { LMap, LTileLayer, LMarker, LPopup, LIcon } from 'vue2-leaflet';
 import TopCards from './TopCards';
 import TheMapModal from './TheMapModal';
+import TheAboutModal from './TheAboutModal';
 import conditions from '../DummyData/conditionTranslate';
 import pointInPoly from '../helpers/pointInPolygon';
 
@@ -111,6 +113,7 @@ export default {
     LIcon,
     TopCards,
     TheMapModal,
+    TheAboutModal,
   },
   data() {
     return {
@@ -130,6 +133,10 @@ export default {
     if (this.$store.getters.showMapModal) {
       this.$bvModal.show('heads-up');
       this.$store.commit('updateShowMapModal', false);
+    }
+
+    if (!this.$store.getters.visitedAbout) {
+      this.$store.dispatch('aboutTimeout', this.$bvModal);
     }
   },
   methods: {

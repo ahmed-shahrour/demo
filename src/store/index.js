@@ -20,6 +20,7 @@ export default new Vuex.Store({
       incrementInt: null,
     },
     showMapModal: true,
+    visitedAbout: false,
   },
   getters: {
     isOpt(state) {
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     showMapModal(state) {
       return state.showMapModal;
+    },
+    visitedAbout(state) {
+      return state.visitedAbout;
     },
   },
   mutations: {
@@ -96,6 +100,9 @@ export default new Vuex.Store({
             : conditions.STABLE;
       }
     },
+    updateVisitedAbout(state, payload) {
+      state.visitedAbout = payload;
+    },
   },
   actions: {
     incrementInv(context) {
@@ -107,6 +114,14 @@ export default new Vuex.Store({
       context.commit('switchOff');
       clearInterval(context.state.data.incrementInt);
       context.state.data.incrementInt = null;
+    },
+    aboutTimeout(context, payload) {
+      if (!context.state.visitedAbout) {
+        setTimeout(() => {
+          payload.show('visit-about');
+        }, 45 * 1000);
+        context.commit('updateVisitedAbout', true);
+      }
     },
   },
 });

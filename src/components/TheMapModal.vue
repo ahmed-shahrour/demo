@@ -74,7 +74,7 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'TheMapModal',
+};
 </script>
-
-<style></style>
