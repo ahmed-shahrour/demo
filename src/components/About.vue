@@ -91,10 +91,11 @@
         <hr />
         <h5 class="text-justify" style="line-height: 1.5em;">
           The solution acts as a platform, meaning there are two stakeholders,
-          the government and the hospitals. Both need to be on-board for this to
-          happen, this doesn't mean a whole country needs to commit but maybe we
-          can start at small juristriction and grow bit by bit. If you have any
-          connection with an EMS dispatch centre or a hospital,
+          the government (Federal, State, etc.) and the hospitals. Both need to
+          be on-board for this to happen, this doesn't mean a whole country
+          needs to commit but maybe we can start at a small juristriction and
+          grow from there. If you have any connection with an EMS dispatch
+          centre or a hospital,
           <b-link :to="{ name: 'Contact' }">please contact us</b-link>, it'll
           help us get the ball rolling.
           <br />
