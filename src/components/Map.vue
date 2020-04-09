@@ -1,6 +1,12 @@
 <template>
   <div>
-    <l-map :zoom="zoom" :center="center" style="height: 100%;">
+    <l-map
+      :zoom="zoom"
+      :center="center"
+      :style="
+        `height: ${$store.getters.innerHeight - $store.getters.navHeight}px`
+      "
+    >
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
 
       <l-marker
@@ -10,33 +16,33 @@
           hospital.geometry.location.lng,
         ]"
         :key="hospital.id"
+        @mouseover="onHover"
+        @mouseout="onNotHover"
       >
-        <l-icon :icon-anchor="[12, 14]">
-          <b-iconstack font-scale="2">
-            <b-icon
-              stacked
-              icon="circle-fill"
-              scale="1.2"
-              variant="dark"
-            ></b-icon>
-            <b-icon
-              stacked
-              icon="plus-circle-fill"
-              :variant="
-                !$store.getters.isOpt
-                  ? 'light'
+        <l-icon :icon-anchor="[19, 37]">
+          <font-awesome-layers class="fa-3x">
+            <font-awesome-icon
+              :icon="['fas', 'map-marker']"
+              :style="{
+                color: !$store.getters.isOpt
+                  ? 'black'
                   : hospital.condition === conditions.CRITICAL
-                  ? 'danger'
+                  ? 'red'
                   : hospital.condition === conditions.MILD
-                  ? 'warning'
-                  : 'success'
-              "
-              scale="1"
-            ></b-icon>
-          </b-iconstack>
+                  ? '#ff8c00'
+                  : 'green',
+              }"
+            ></font-awesome-icon>
+            <font-awesome-icon
+              :icon="['fas', 'plus-circle']"
+              transform="shrink-7 up-2 right-0.25"
+              style="color: white;"
+            >
+            </font-awesome-icon>
+          </font-awesome-layers>
         </l-icon>
-        <l-popup style="width: 200px;">
-          <p class="text-center" style="font-size: 14px;">
+        <l-popup style="width: 200px;" :options="{ offset: [0, -25] }">
+          <p class="text-center text-wrap" style="font-size: 14px;">
             <strong>{{ hospital.name }}</strong>
           </p>
 
@@ -73,18 +79,26 @@
         </l-popup>
       </l-marker>
 
-      <l-marker :lat-lng="center">
-        <l-icon>
-          <b-icon
-            icon="person-fill"
-            scale="2.5"
-            variant="primary"
-            animation="cylon-vertical"
-          >
-          </b-icon>
+      <l-marker
+        :lat-lng="[40.729162, -73.870219]"
+        @mouseover="onHover"
+        @mouseout="onNotHover"
+      >
+        <l-icon :icon-anchor="[18, 20]">
+          <font-awesome-layers class="fa-3x">
+            <font-awesome-icon
+              :icon="['fas', 'circle']"
+              style="color: #007BFF;"
+            />
+            <font-awesome-icon
+              :icon="['fas', 'user']"
+              transform="shrink-7 up-0.5"
+              style="color: white;"
+            />
+          </font-awesome-layers>
         </l-icon>
         <l-popup
-          >I called 999! Which hospital will I be transported to?</l-popup
+          >I called 911! Which hospital will I be transported to?</l-popup
         >
       </l-marker>
     </l-map>
@@ -101,7 +115,6 @@ import TopCards from './TopCards';
 import TheMapModal from './TheMapModal';
 import TheAboutModal from './TheAboutModal';
 import conditions from '../DummyData/conditionTranslate';
-import pointInPoly from '../helpers/pointInPolygon';
 
 export default {
   name: 'HelloWorld',
@@ -122,11 +135,10 @@ export default {
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 11,
-      center: [25.14468, 55.305078],
+      center: [40.732338, -73.914771],
     };
   },
   created() {
-    this.getLocation();
     this.$store.dispatch('incrementInv');
   },
   mounted() {
@@ -140,24 +152,11 @@ export default {
     }
   },
   methods: {
-    async getLocation() {
-      const coordinates = await this.$getLocation({
-        enableHighAccuracy: true,
-      });
-
-      const { lat, lng } = coordinates;
-
-      const dubaiPoly = [
-        [25.0669411, 54.9934387],
-        [25.3781519, 55.2735901],
-        [25.2478012, 55.5091095],
-        [24.90699, 55.2296448],
-        [25.0669411, 54.994812],
-      ];
-
-      if (pointInPoly([lat, lng], dubaiPoly)) {
-        this.center = coordinates;
-      }
+    onHover(ev) {
+      ev.target.openPopup();
+    },
+    onNotHover(ev) {
+      ev.target.closePopup();
     },
     convConToStr(condition) {
       switch (condition) {

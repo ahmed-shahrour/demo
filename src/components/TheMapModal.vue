@@ -2,7 +2,7 @@
   <b-modal
     id="heads-up"
     centered
-    title="Hey There!"
+    hide-header
     hide-header-close
     no-close-on-backdrop
     no-close-on-esc
@@ -16,52 +16,52 @@
       <ul>
         <li>
           <p>
-            <span
-              ><b-iconstack font-scale="2" class="mt-2">
-                <b-icon
-                  stacked
-                  icon="circle-fill"
-                  scale="1"
-                  variant="dark"
-                ></b-icon>
-                <b-icon
-                  stacked
-                  icon="plus-circle-fill"
-                  variant="light"
-                  scale="0.8"
-                ></b-icon> </b-iconstack
+            <span>
+              <font-awesome-layers class="fa-2x">
+                <font-awesome-icon
+                  :icon="['fas', 'map-marker']"
+                  :style="{
+                    color: 'black',
+                  }"
+                ></font-awesome-icon>
+                <font-awesome-icon
+                  :icon="['fas', 'plus-circle']"
+                  transform="shrink-7 up-2 "
+                  style="color: white;"
+                >
+                </font-awesome-icon> </font-awesome-layers
             ></span>
-            represents a hospital
+            represents a hospital.
           </p>
         </li>
         <li>
           <p>
             <span>
-              <b-icon
-                icon="person-fill"
-                scale="2"
-                variant="primary"
-                animation="cylon-vertical"
-                class="ml-2 mr-2"
-              >
-              </b-icon>
+              <font-awesome-layers class="fa-2x">
+                <font-awesome-icon
+                  :icon="['fas', 'circle']"
+                  style="color: #007BFF;"
+                />
+                <font-awesome-icon
+                  :icon="['fas', 'user']"
+                  transform="shrink-7 up-0.5"
+                  style="color: white;"
+                />
+              </font-awesome-layers>
             </span>
-            represents a person calling 911
+            represents a person.
           </p>
         </li>
         <li>
-          Make sure to click the <strong>"Optimize"</strong> switch at the very
-          top of the screen to get the show started!
+          Click the <strong>"Optimize"</strong> switch at the top of the screen
+          to get the show started!
         </li>
         <li class="mt-2">
-          Try to look at this through the lens of the person answering the 911
-          call, you will essentially play the role of instructuing the ambulance
-          to take the caller to the hospital thats most appropriate.
+          Try figuring out which hospital is best for the person on the map.
         </li>
         <li class="mt-2">
           This is a demonstration and the data you will see is
-          <strong>NOT</strong> real, however, locations and names of hospitals
-          are.
+          <strong>NOT</strong> real.
         </li>
       </ul>
     </template>

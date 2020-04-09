@@ -3,25 +3,19 @@
     <transition-group name="top-cards">
       <b-card
         key="1"
-        class="shadow position-fixed"
-        style="
-          z-index: 1050;
-          right: 20px;
-          bottom: 64vh;
-          width: 40vw;
-          max-width: 250px;
-          height: 25vh;
-          max-height: 250px;
-        "
+        class="shadow position-fixed top-card card-one"
         v-show="$store.getters.isOpt"
       >
         <div class="my-auto h-100 align-middle" style="display: inline-block;">
           <b-card-title>Critical</b-card-title>
           <b-card-body
-            :class="[windowWidth < 500 ? 'pt-1' : '', 'align-middle']"
+            :class="[
+              $store.getters.innerWidth < 500 ? 'pt-1' : '',
+              'align-middle',
+            ]"
           >
             <hr class="m-0" />
-            <h1 :class="displayClass" style="color: red;">
+            <h1 class="display-2" style="color: red;">
               {{ criticalCount }}
             </h1>
           </b-card-body>
@@ -30,43 +24,35 @@
 
       <b-card
         key="2"
-        class="shadow position-fixed"
-        style="
-          z-index: 1050;
-          right: 20px;
-          bottom: 35vh;
-          width: 40vw;
-          max-width: 250px;
-          height: 25vh;
-          max-height: 250px;
-        "
+        class="shadow position-fixed top-card card-two"
         v-show="$store.getters.isOpt"
       >
         <b-card-title>Mild</b-card-title>
-        <b-card-body :class="[windowWidth < 500 ? 'pt-1' : '', 'align-middle']">
+        <b-card-body
+          :class="[
+            $store.getters.innerWidth < 500 ? 'pt-1' : '',
+            'align-middle',
+          ]"
+        >
           <hr class="m-0" />
-          <h1 :class="displayClass" style="color: orange;">{{ mildCount }}</h1>
+          <h1 class="display-2" style="color: orange;">{{ mildCount }}</h1>
         </b-card-body>
       </b-card>
 
       <b-card
         key="3"
-        class="shadow position-fixed"
-        style="
-          z-index: 1050;
-          right: 20px;
-          bottom: 6vh;
-          width: 40vw;
-          max-width: 250px;
-          height: 25vh;
-          max-height: 250px;
-        "
+        class="shadow position-fixed top-card card-three"
         v-show="$store.getters.isOpt"
       >
         <b-card-title>Stable</b-card-title>
-        <b-card-body :class="[windowWidth < 500 ? 'pt-1' : '', 'align-middle']">
+        <b-card-body
+          :class="[
+            $store.getters.innerWidth < 500 ? 'pt-1' : '',
+            'align-middle',
+          ]"
+        >
           <hr class="m-0" />
-          <h1 :class="displayClass" style="color: green;">{{ stableCount }}</h1>
+          <h1 class="display-2" style="color: green;">{{ stableCount }}</h1>
         </b-card-body>
       </b-card>
     </transition-group>
@@ -74,15 +60,10 @@
 </template>
 
 <script>
-import { vueWindowSizeMixin } from 'vue-window-size';
 import conditions from '../DummyData/conditionTranslate';
 
 export default {
-  mixins: [vueWindowSizeMixin],
   computed: {
-    displayClass() {
-      return this.windowWidth > 500 ? 'display-2' : 'display-4';
-    },
     criticalCount() {
       return this.$store.getters.hospitals.filter(
         (hospital) => hospital.condition === conditions.CRITICAL
@@ -126,7 +107,59 @@ export default {
   transform: translateY(10px);
 }
 
-/* .card > div.card-body {
-  height: 300px !important;
-} */
+.top-card {
+  z-index: 1050;
+  width: 40vw;
+  height: 25%;
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.card-one {
+  right: 20px;
+  bottom: 60%;
+}
+
+.card-two {
+  right: 20px;
+  bottom: 32%;
+}
+
+.card-three {
+  right: 20px;
+  bottom: 4%;
+}
+
+@media only screen and (max-width: 992px) {
+  .top-card {
+    z-index: 1050;
+    width: 35vw;
+    height: 23%;
+    max-width: 250px;
+    max-height: 250px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .top-card {
+    z-index: 1050;
+    width: 35vw;
+    max-width: 250px;
+    min-width: 135px !important;
+    height: 20%;
+    max-height: 250px;
+    min-height: 130px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .top-card {
+    z-index: 1050;
+    width: 35vw;
+    max-width: 250px;
+    min-width: 135px !important;
+    height: 20%;
+    max-height: 250px;
+  }
+}
 </style>

@@ -33,9 +33,10 @@
         </h5>
       </b-col>
     </b-row>
-    <b-row align-h="center" class="mt-4">
+    <b-row align-h="center" class="mt-4" style="margin-bottom: 150px;">
       <b-button
-        :href="'fb.me/covidoptimize'"
+        :href="'https://www.facebook.com/covidoptimize'"
+        target="_blank"
         class="p-0 mr-4"
         style="background-color: transparent; border-width: 0px;"
       >
@@ -47,6 +48,7 @@
       </b-button>
       <b-button
         :href="'mailto:covidoptimize@gmail.com'"
+        target="_blank"
         class="p-0 mx-4"
         style="background-color: transparent; border-width: 0px;"
       >
@@ -58,6 +60,7 @@
       </b-button>
       <b-button
         href="https://github.com/ahmadshahrour951/covidoptimize"
+        target="_blank"
         class="p-0 ml-4"
         style="background-color: transparent; border-width: 0px;"
       >

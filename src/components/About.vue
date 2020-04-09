@@ -87,15 +87,24 @@
         </h5>
 
         <br /><br />
-        <h3>Solution <b-icon icon="arrow-right"></b-icon> Reality</h3>
+        <h3>Implementation</h3>
         <hr />
         <h5 class="text-justify" style="line-height: 1.5em;">
+          The solution acts as a platform, meaning there are two stakeholders,
+          the government and the hospitals. Both need to be on-board for this to
+          happen, this doesn't mean a whole country needs to commit but maybe we
+          can start at small juristriction and grow bit by bit. If you have any
+          connection with an EMS dispatch centre or a hospital,
+          <b-link :to="{ name: 'Contact' }">please contact us</b-link>, it'll
+          help us get the ball rolling.
+          <br />
+          <br />
           We're aiming for worst-case scenarios:
           <ol>
             <br />
 
             <li>
-              If the Government and hospitals don't have the bandwidth to
+              If the government and hospitals don't have the bandwidth to
               delegate work to their IT teams or, worse, they might not have
               one.
               <br />
@@ -111,7 +120,7 @@
             <br />
 
             <li>
-              If the Government and hospitals don't give input. (Some may think
+              If the government and hospitals don't give input. (Some may think
               this is not worth their time)
               <br />
               <br />
@@ -125,9 +134,8 @@
             </li>
           </ol>
           <br />
-          There's a lot of work to be done, and all efforts are encocuraged. No
-          matter the constraints, we will continue to work on the project until
-          the very end.
+          There's a lot of work to be done, and all efforts are encocuraged, and
+          yes I'm talking about YOU.
         </h5>
         <br /><br />
         <h3>Further Questions:</h3>

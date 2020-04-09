@@ -6,20 +6,37 @@ import store from './store';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faFacebookSquare, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faEnvelope, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import {
+  faMapMarker,
+  faPlusCircle,
+  faUser,
+  faCircle,
+  faBars,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  FontAwesomeIcon,
+  FontAwesomeLayers,
+} from '@fortawesome/vue-fontawesome';
 
-library.add(faFacebookSquare, faEnvelope, faGithub);
+library.add(
+  faFacebookSquare,
+  faEnvelope,
+  faGithub,
+  faMapMarker,
+  faPlusCircle,
+  faUser,
+  faCircle,
+  faTimesCircle,
+  faBars
+);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('font-awesome-layers', FontAwesomeLayers);
 
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
-
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap-vue/dist/bootstrap-vue.css';
+import { BootstrapVue } from 'bootstrap-vue';
 import './scss/custom.scss';
 
 Vue.use(BootstrapVue);
-Vue.use(BootstrapVueIcons);
 
 import { Icon } from 'leaflet';
 
@@ -31,9 +48,6 @@ Icon.Default.mergeOptions({
 });
 
 import 'leaflet/dist/leaflet.css';
-
-import VueGeolocation from 'vue-browser-geolocation';
-Vue.use(VueGeolocation);
 
 Vue.config.productionTip = false;
 

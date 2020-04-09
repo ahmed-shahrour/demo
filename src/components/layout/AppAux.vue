@@ -1,8 +1,13 @@
 <template>
-  <div class="h-100">
-    <TheNavBar :style="`height: ${navHeight}vh;`"></TheNavBar>
+  <div :style="`height: ${$store.getters.innerHeight}px;`">
+    <TheNavBar :style="`height: ${$store.getters.navHeight}px;`"></TheNavBar>
     <transition name="slide-fade" mode="out-in" appear>
-      <router-view :style="`height: ${100 - navHeight}vh`" mode="out-in">
+      <router-view
+        :style="
+          `height: ${$store.getters.innerHeight - $store.getters.navHeight}px`
+        "
+        mode="out-in"
+      >
       </router-view>
     </transition>
   </div>
@@ -10,17 +15,10 @@
 
 <script>
 import TheNavBar from '../TheNavBar';
-import { vueWindowSizeMixin } from 'vue-window-size';
 
 export default {
-  mixins: [vueWindowSizeMixin],
   name: 'AppAux',
   components: { TheNavBar },
-  computed: {
-    navHeight() {
-      return this.windowHeight < 700 ? 11 : 8;
-    },
-  },
 };
 </script>
 

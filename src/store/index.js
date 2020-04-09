@@ -11,9 +11,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    window: {
+      innerHeight: 0,
+      innerWidth: 0,
+    },
     nav: {
       isOpt: false,
       formatToggle: 'map',
+      height: 0,
     },
     data: {
       hospitals: final.default,
@@ -41,8 +46,26 @@ export default new Vuex.Store({
     visitedAbout(state) {
       return state.visitedAbout;
     },
+    innerHeight(state) {
+      return state.window.innerHeight;
+    },
+    innerWidth(state) {
+      return state.window.innerWidth;
+    },
+    navHeight(state) {
+      return state.nav.height;
+    },
   },
   mutations: {
+    updateWindowDim(state, payload) {
+      state.window.innerHeight = payload.innerHeight;
+      state.window.innerWidth = payload.innerWidth;
+
+      state.nav.height =
+        payload.innerHeight < 768
+          ? payload.innerHeight * 0.11
+          : payload.innerHeight * 0.08;
+    },
     updateShowMapModal(state, payload) {
       state.showMapModal = payload;
     },
@@ -108,7 +131,7 @@ export default new Vuex.Store({
     incrementInv(context) {
       context.state.data.incrementInt = setInterval(() => {
         if (context.state.nav.isOpt) context.commit('mutateHospitals');
-      }, 2000);
+      }, 2500);
     },
     stopIncrement(context) {
       context.commit('switchOff');
@@ -119,7 +142,7 @@ export default new Vuex.Store({
       if (!context.state.visitedAbout) {
         setTimeout(() => {
           payload.show('visit-about');
-        }, 45 * 1000);
+        }, 60 * 1000);
         context.commit('updateVisitedAbout', true);
       }
     },

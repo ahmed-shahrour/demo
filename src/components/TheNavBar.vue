@@ -5,11 +5,12 @@
       :style="{ width: navWidth + 'px' }"
       @focusout="closeNav"
     >
-      <b-icon-x-circle
-        class="closebtn mt-3"
+      <font-awesome-icon
+        :icon="['far', 'times-circle']"
+        class="closebtn mt-4"
         @click="closeNav"
-        font-scale="2.5"
-      ></b-icon-x-circle>
+        size="2x"
+      ></font-awesome-icon>
 
       <b-link
         :to="{ name: 'Map' }"
@@ -34,13 +35,9 @@
       >
     </div>
 
-    <b-button
-      @click="openNav"
-      size="sm"
-      variant="outline-light"
-      class="px-1 py-0"
-      ><b-icon-list font-scale="2.5" class="p-0 m-0"></b-icon-list
-    ></b-button>
+    <b-button @click="openNav" size="sm" variant="outline-light">
+      <font-awesome-icon :icon="['fas', 'bars']" size="2x"></font-awesome-icon>
+    </b-button>
     <transition name="slide-fade">
       <div
         class="border rounded shadow p-2 mx-auto"
@@ -55,7 +52,7 @@
           >Optimize</b-form-checkbox
         >
         <b-form-radio-group
-          v-show="isOptVal && windowWidth > 500"
+          v-show="isOptVal && $store.getters.innerWidth > 500"
           v-model="toggleVal"
           :options="radio.options"
           style="color: white;"
@@ -67,10 +64,7 @@
 </template>
 
 <script>
-import { vueWindowSizeMixin } from 'vue-window-size';
-
 export default {
-  mixins: [vueWindowSizeMixin],
   name: 'TheNavBar',
   data() {
     return {
@@ -91,7 +85,7 @@ export default {
     },
     openNav() {
       this.isNavOpen = true;
-      if (this.windowWidth > 500) {
+      if (this.$store.getters.innerWidth > 500) {
         this.navWidth = 300;
       } else {
         this.navWidth = 200;
