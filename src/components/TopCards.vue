@@ -10,8 +10,11 @@
           <b-card-title>Critical</b-card-title>
           <b-card-body
             :class="[
-              $store.getters.innerWidth < 500 ? 'pt-1' : '',
-              'align-middle',
+              $store.getters.innerWidth < 768 ||
+              $store.getters.innerHeight < 700
+                ? 'pt-1'
+                : '',
+              'align-middle'
             ]"
           >
             <hr class="m-0" />
@@ -30,8 +33,10 @@
         <b-card-title>Mild</b-card-title>
         <b-card-body
           :class="[
-            $store.getters.innerWidth < 500 ? 'pt-1' : '',
-            'align-middle',
+            $store.getters.innerWidth < 768 || $store.getters.innerHeight < 700
+              ? 'pt-1'
+              : '',
+            'align-middle'
           ]"
         >
           <hr class="m-0" />
@@ -47,8 +52,10 @@
         <b-card-title>Stable</b-card-title>
         <b-card-body
           :class="[
-            $store.getters.innerWidth < 500 ? 'pt-1' : '',
-            'align-middle',
+            $store.getters.innerWidth < 768 || $store.getters.innerHeight < 700
+              ? 'pt-1'
+              : '',
+            'align-middle'
           ]"
         >
           <hr class="m-0" />
@@ -66,20 +73,20 @@ export default {
   computed: {
     criticalCount() {
       return this.$store.getters.hospitals.filter(
-        (hospital) => hospital.condition === conditions.CRITICAL
+        hospital => hospital.condition === conditions.CRITICAL
       ).length;
     },
     mildCount() {
       return this.$store.getters.hospitals.filter(
-        (hospital) => hospital.condition === conditions.MILD
+        hospital => hospital.condition === conditions.MILD
       ).length;
     },
     stableCount() {
       return this.$store.getters.hospitals.filter(
-        (hospital) => hospital.condition === conditions.STABLE
+        hospital => hospital.condition === conditions.STABLE
       ).length;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -130,7 +137,18 @@ export default {
   bottom: 4%;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-height: 800px) and (min-width: 992px) {
+  .top-card {
+    z-index: 1050;
+    width: 35vw;
+    height: 25%;
+    max-width: 250px;
+    max-height: 250px;
+    min-height: 160px !important;
+  }
+}
+
+@media only screen and (min-height: 800px) and (max-width: 992px) {
   .top-card {
     z-index: 1050;
     width: 35vw;
