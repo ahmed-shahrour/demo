@@ -15,47 +15,6 @@
         :tbody-transition-props="transProps"
         primary-key="id"
       >
-        <template v-slot:thead-top>
-          <b-tr style="position: sticky !important; top: 100px !important;">
-            <b-th colspan="1"><span class="sr-only">Name and ID</span></b-th>
-            <b-th
-              colspan="3"
-              class="border"
-              style="position: sticky !important; top: 0px !important;"
-              >KPIs</b-th
-            >
-            <b-th
-              colspan="2"
-              class="border"
-              style="position: sticky !important; top: 0px !important;"
-              >Personnel</b-th
-            >
-            <b-th
-              colspan="2"
-              class="border"
-              style="position: sticky !important; top: 0px !important;"
-              >ICUs</b-th
-            >
-            <b-th
-              colspan="2"
-              class="border"
-              style="position: sticky !important; top: 0px !important;"
-              >Beds</b-th
-            >
-            <b-th
-              colspan="2"
-              class="border"
-              style="position: sticky !important; top: 0px !important;"
-              >Ventilators</b-th
-            >
-            <b-th
-              colspan="2"
-              class="border"
-              style="position: sticky !important; top: 0px !important;"
-              >Respirators</b-th
-            >
-          </b-tr>
-        </template>
       </b-table>
     </b-card>
   </div>
@@ -66,7 +25,7 @@ import conditions from '../DummyData/conditionTranslate';
 
 export default {
   beforeRouteEnter(to, from, next) {
-    next((vm) => {
+    next(vm => {
       if (!vm.$store.getters.isOpt || vm.$store.getters.isMap) {
         vm.$router.replace({ name: 'Map' });
       }
@@ -75,85 +34,85 @@ export default {
   data() {
     return {
       transProps: {
-        name: 'flip-list',
+        name: 'flip-list'
       },
       fields: [
         {
           key: 'name',
           label: 'Hospital',
-          sortable: true,
+          sortable: true
         },
         {
           key: 'condition',
           label: 'Condition',
-          sortable: true,
+          sortable: true
         },
         {
           key: 'health',
           label: 'Resource Occupancy (%)',
-          sortable: true,
+          sortable: true
         },
         {
           key: 'er_time',
           label: 'ER Wait Time (hr)',
-          sortable: true,
+          sortable: true
         },
         {
           key: 'doctors',
           label: 'Doctors',
-          sortable: true,
+          sortable: true
         },
         {
           key: 'nurses',
           label: 'Nurses',
-          sortable: true,
+          sortable: true
         },
         {
           key: 'icus_occupied',
-          label: 'Occupied',
-          sortable: true,
+          label: 'ICUs Occupied',
+          sortable: true
         },
         {
           key: 'icus_total',
-          label: 'Total',
-          sortable: true,
+          label: 'ICUs Total',
+          sortable: true
         },
         {
           key: 'beds_occupied',
-          label: 'Occupied',
-          sortable: true,
+          label: 'Beds Occupied',
+          sortable: true
         },
         {
           key: 'beds_total',
-          label: 'Total',
-          sortable: true,
+          label: 'Beds Total',
+          sortable: true
         },
         {
           key: 'ventilators_occupied',
-          label: 'Occupied',
-          sortable: true,
+          label: 'Ventilators Occupied',
+          sortable: true
         },
         {
           key: 'ventilators_total',
-          label: 'Total',
-          sortable: true,
+          label: 'Ventilators Total',
+          sortable: true
         },
         {
           key: 'respirators_occupied',
-          label: 'Occupied',
-          sortable: true,
+          label: 'Respirators Occupied',
+          sortable: true
         },
         {
           key: 'respirators_total',
-          label: 'Total',
-          sortable: true,
-        },
-      ],
+          label: 'Respirators Total',
+          sortable: true
+        }
+      ]
     };
   },
   computed: {
     tableItems() {
-      return this.$store.getters.hospitals.map((hospital) => {
+      return this.$store.getters.hospitals.map(hospital => {
         return {
           id: hospital.id,
           name: hospital.name,
@@ -180,11 +139,11 @@ export default {
               ? 'danger'
               : hospital.condition === conditions.MILD
               ? 'warning'
-              : 'success',
+              : 'success'
         };
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
