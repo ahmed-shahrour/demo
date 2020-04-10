@@ -13,7 +13,7 @@
         v-for="hospital in $store.getters.hospitals"
         :lat-lng="[
           hospital.geometry.location.lat,
-          hospital.geometry.location.lng,
+          hospital.geometry.location.lng
         ]"
         :key="hospital.id"
         @mouseover="onHover"
@@ -115,6 +115,17 @@ import TopCards from './TopCards';
 import TheMapModal from './TheMapModal';
 import TheAboutModal from './TheAboutModal';
 import conditions from '../DummyData/conditionTranslate';
+
+// import { Icon } from 'leaflet';
+
+// delete Icon.Default.prototype._getIconUrl;
+// Icon.Default.mergeOptions({
+//   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
+//   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+// });
+
+import 'leaflet/dist/leaflet.css';
 
 export default {
   name: 'HelloWorld',
